@@ -310,6 +310,37 @@
     el.textContent = (el.textContent || '').trim();
   }
 
+  function setupHeroVideoFallback() {
+    const video = document.getElementById('hero-video');
+    const fallback = document.getElementById('hero-video-fallback');
+    if (!video || !fallback) return;
+
+    let switched = false;
+
+    function switchToFallback() {
+      if (switched) return;
+      switched = true;
+
+      try {
+        video.pause();
+      } catch (e) {
+        // ignore
+      }
+
+      video.hidden = true;
+      fallback.hidden = false;
+    }
+
+    // 网络/解码失败
+    video.addEventListener('error', switchToFallback, { once: true });
+
+    // 国内访问 GitHub Pages 可能出现“长时间卡在加载中”，做一个超时降级
+    window.setTimeout(() => {
+      const ok = (video.readyState >= 2) || (video.currentTime > 0);
+      if (!ok) switchToFallback();
+    }, 3000);
+  }
+
   function setupMaterialRipple() {
     // 事件委托：兼容动态插入的按钮（如 Hero subtitle 内的“加入我们”）
     document.addEventListener('pointerdown', function (e) {
@@ -817,6 +848,7 @@
 
     setupCopyButtons();
     setupHeroSubtitleRotator();
+    setupHeroVideoFallback();
     setupHomeClock();
     setupOnlineTimeStatus();
     setupNewsTimeLabels();
