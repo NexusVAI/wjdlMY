@@ -24,7 +24,7 @@
   <!-- 固定导航栏 -->
   <nav class="navbar">
     <div class="nav-container">
-      <a href="#" class="nav-brand">EF Mods</a>
+      <a href="#" class="nav-brand"><img src="assets/LOGO01.png" alt="EF Mods" class="nav-logo" />EF Mods</a>
       <div class="nav-menu desktop-nav">
         <a href="#home" class="nav-item active" data-page="home">
           <i class="fas fa-home"></i>
@@ -36,7 +36,7 @@
         </a>
         <a href="#police-mod" class="nav-item" data-page="police-mod">
           <i class="fas fa-shield-alt"></i>
-          EF Police Mod
+          TACTFR
           <span class="nav-badge nav-badge--hot" aria-label="热门">HOT</span>
         </a>
         <a href="#yuyu-tool" class="nav-item" data-page="yuyu-tool">
@@ -103,7 +103,7 @@
         </a>
         <a href="#police-mod" class="nav-item" data-page="police-mod">
           <i class="fas fa-shield-alt"></i>
-          EF Police Mod
+          TACTFR
           <span class="nav-badge nav-badge--hot" aria-label="热门">HOT</span>
         </a>
         <a href="#yuyu-tool" class="nav-item" data-page="yuyu-tool">
@@ -398,7 +398,7 @@
     <section id="news" class="page">
       <header class="hero">
         <div class="hero-content">
-          <h1>新闻</h1>
+          <h1>新闻专线</h1>
           <p class="subtitle">进展、计划与重要说明（稳定优先）</p>
           <p class="version">我们会把关键更新写成“可追溯的记录”：你能看到我们做了什么、为什么做、以及下一步要做什么。</p>
         </div>
@@ -407,6 +407,48 @@
 
       <section class="section" id="news-feed" aria-label="EF Mods 新闻列表">
         <div class="news-list">
+          <article class="news-card" aria-label="宇宇修改器 4.3.0 更新">
+            <div class="news-card-head">
+              <h2 class="news-title">宇宇修改器 4.3.0 更新</h2>
+              <div class="news-meta" aria-label="发布时间">
+                <time class="news-time" datetime="2026-02-12T10:40:00" data-news-published="2026-02-12T10:40:00">2026-02-12 10:40</time>
+                <span class="news-badge" aria-label="新消息标记">NEW</span>
+              </div>
+            </div>
+
+            <div class="news-content">
+              <p>
+                我们不辜负大家的期待，正式推出全新的 <strong>EF 宇宇修改器 v4.3.0</strong>。
+                本次迭代以“更好用、更可控、更统一”为目标：从常用功能到 UI 交互都做了系统性的重构与补强。
+              </p>
+
+              <p>
+                同时需要说明：<strong>目前仅更新增强版</strong>。
+                这一策略并非“放弃”，而是为了让后续版本在同一条兼容基线上更稳定地推进；具体原因可查看往期《新闻专线》公告。
+              </p>
+
+              <h3 class="news-h3">本次更新内容概览</h3>
+              <ul class="news-listing">
+                <li><strong>钞票自定义修改功能：</strong>支持更灵活的金额调整与显示逻辑，配置更直观。</li>
+                <li><strong>杂项目录新增多种 HUD 状态显示：</strong>把常用状态信息集中展示，减少频繁切菜单的打断。</li>
+                <li><strong>修复诟病已久的 FOV 视角问题：</strong>优化视角相关逻辑，减少异常拉伸/错位等体验问题。</li>
+                <li><strong>载具、武器重分类：</strong>重新梳理结构与入口，查找更快、逻辑更清晰。</li>
+                <li><strong>可切换角色模型：</strong>新增模型切换能力，方便快速验证外观与动作兼容。</li>
+                <li><strong>UI 动效大改：</strong>整体交互更顺滑，切换反馈更明确，减少“点了但没反应”的误判。</li>
+              </ul>
+
+              <p>
+                这次我们也顺手整理了不少“细碎但影响很大”的体验点：提示文案更一致、按钮布局更贴合直觉、部分功能的默认参数更合理。
+                如果你之前觉得“功能有，但不够顺手”，4.3.0 会让它更像一个成熟、稳定的工具。
+              </p>
+
+              <p>
+                后续我们会继续沿着两个方向推进：一是把高频功能做得更稳、更快、更少误触；二是把“常用信息”更多地以 HUD/状态方式呈现，尽量减少打断式操作。
+                欢迎继续提交反馈：请尽量附上版本号、复现步骤与相关截图/日志（越具体越快定位）。
+              </p>
+            </div>
+          </article>
+
           <article class="news-card" aria-label="警察模组 5.3.0 正式发布，如约而至">
             <div class="news-card-head">
               <h2 class="news-title">警察模组 5.3.0 正式发布，如约而至</h2>
@@ -418,7 +460,7 @@
 
             <div class="news-content">
               <p>
-                <strong>EF Police Mod v5.3.0</strong> 现已正式发布。
+                <strong>TACTFR v5.3.0</strong> 现已正式发布。
                 这一次，我们把“可玩性”与“可控性”放在同等优先级：功能更强，但依旧坚持稳定优先、流程一致、反馈明确。
               </p>
 
@@ -488,7 +530,7 @@
 
             <div class="news-content">
               <p>
-                近期 <strong>EF Police Mod</strong> 正在集中克服 5.3.0 迭代中的关键技术难关。
+                近期 <strong>TACTFR</strong> 正在集中克服 5.3.0 迭代中的关键技术难关。
                 我们将本阶段工作定位为“工程性攻坚”：优先打通底层链路与交互路径，确保新增能力能够被稳定调用、被准确反馈，并在复杂模组生态下保持可控与可复现。
               </p>
 
@@ -560,7 +602,7 @@
 
             <div class="news-content">
               <p>
-                很高兴遇到大家，我是 <strong>EF Police Mod</strong> 的开发者。
+                很高兴遇到大家，我是 <strong>TACTFR</strong> 的开发者。
                 今天我们正式开通了“新闻”页面——从现在开始，我们会用更透明、更可追溯的方式同步开发进度，也欢迎你在社区里更深入地交流、提出反馈。
               </p>
 
@@ -599,7 +641,7 @@
       <header class="hero">
         <div class="hero-content hero-content--split">
           <div class="hero-main">
-            <h1>EF Police Mod</h1>
+            <h1>TACTFR</h1>
             <p class="subtitle">高拟真 · 高自由度 · GTA5 警察玩法模组</p>
             <p class="version">当前版本：<strong>v5.3.0</strong> ｜ 更新日期：2026/02/08</p>
             <div class="hero-buttons">
@@ -680,7 +722,7 @@
       <section class="section" id="about">
         <h2>模组介绍</h2>
         <p>
-          <strong>EF Police Mod</strong> 是一款面向 GTA5 的沉浸式警察玩法扩展，聚焦于<strong>执法流程一致性</strong>与<strong>嫌疑人行为逻辑</strong>。
+          <strong>TACTFR</strong> 是一款面向 GTA5 的沉浸式警察玩法扩展，聚焦于<strong>执法流程一致性</strong>与<strong>嫌疑人行为逻辑</strong>。
           基于 5.x 架构对核心行为与任务系统进行重构，强调稳定性、可拓展性与可维护性，并尽可能降低与其他脚本/模组的冲突风险。
         </p>
         <ul class="features">
@@ -752,17 +794,20 @@
   <div class="video-embed-wrapper">
     <div class="video-embed-glass">
       <iframe 
-  src="https://player.bilibili.com/player.html?isOutside=true&aid=116035520828729&bvid=BV1UkccziEqd&cid=35916743839&p=1" 
-  scrolling="no" 
-  border="0" 
-  frameborder="no" 
-  framespacing="0" 
-  allowfullscreen="true">
-</iframe></div>
+        src="https://player.bilibili.com/player.html?bvid=BV1UkccziEqd&page=1&high_quality=1&danmaku=0" 
+        scrolling="no" 
+        border="0" 
+        frameborder="no" 
+        framespacing="0" 
+        allowfullscreen="true"
+        allow="fullscreen; autoplay; encrypted-media"
+        referrerpolicy="no-referrer-when-downgrade"
+        loading="lazy">
+      </iframe>
+    </div>
   </div>
-  <p class="video-caption">建议全屏观看：点击右下角全屏按钮或 <a href="https://www.bilibili.com/video/BV14L6CBYEPr" target="_blank">前往 B 站</a> 支持弹幕</p>
-</section>
-      <!-- 安装与使用说明 -->
+  <p class="video-caption">建议全屏观看：点击右下角全屏按钮或 <a href="https://www.bilibili.com/video/BV1UkccziEqd" target="_blank">前往 B 站</a> 支持弹幕</p>
+</section>      <!-- 安装与使用说明 -->
       <section class="section" id="install">
         <h2>安装与使用说明</h2>
         <ul class="install-list">
@@ -1044,7 +1089,7 @@
           <div class="hero-main">
             <h1>EF 宇宇修改器</h1>
             <p class="subtitle">重新定义游戏的修改器，麻雀虽小，五脏俱全</p>
-            <p class="version">当前版本：<strong>v4.2.0</strong> ｜ 更新日期：2026-02-03</p>
+            <p class="version">当前版本：<strong>v4.3.0</strong> ｜ 更新日期：2026/02/12</p>
             <div class="hero-buttons">
               <a class="btn primary btn-liquid" href="https://www.wanjiadongli.com/mods/292897" target="_blank" rel="noopener">
                 <span class="liquid-refraction"></span>
@@ -1088,7 +1133,7 @@
               </div>
             </div>
 
-            <div class="hero-aside-note">快捷键：<span class="keycap">F6</span> 打开主菜单。</div>
+            <div class="hero-aside-note">自定义快捷键打开主菜单。</div>
           </aside>
         </div>
         <div class="hero-fade" aria-hidden="true"></div>
@@ -1134,6 +1179,8 @@
           <li>线上载具可刷出</li>
           <li>武器与载具数据库</li>
           <li>线上武器可刷出</li>
+          <li>可自定义配置按键等</li>
+          <li>特效 / 滤镜特色玩法，爽到爆</li>
         </ul>
       </section>
 
@@ -1185,7 +1232,7 @@
         <div class="download-card" aria-label="操作速查">
           <h3 style="margin-bottom: 10px;">操作速查</h3>
           <ul class="install-list">
-            <li><strong>打开主菜单：</strong><span class="keycap">F6</span></li>
+            <li><strong>默认主菜单：</strong><span class="keycap">F6</span></li>
             <li><strong>分页切换：</strong>先选中“分页”按钮，再按 <span class="keycap">4</span> / <span class="keycap">6</span></li>
             <li><strong>小键盘无响应：</strong>确认 <span class="keycap">Num Lock</span> 已开启</li>
           </ul>
@@ -1292,8 +1339,27 @@
           <div class="log-group" data-version="4">
             <h3 class="log-title">4.x 系列</h3>
             
-                        <details class="log-block" id="log-4.2.0">
+            <details class="log-block" id="log-4.3.0" open>
               <summary class="log-header">
+                <span class="log-version">v4.3.0</span>
+                <span class="log-date">2026-02-12</span>
+                <i class="fas fa-chevron-down log-icon"></i>
+              </summary>
+              <div class="log-content">
+                <ul>
+                  <li>新增钞票自定义修改功能</li>
+                  <li>杂项目录新增多种 HUD 状态显示</li>
+                  <li>修复诟病已久的 FOV 视角问题</li>
+                  <li>载具、武器重分类</li>
+                  <li>可切换角色模型</li>
+                  <li>UI 动效大改</li>
+                  <li>各种一键飞天功能</li>
+                  <li>火焰翅膀</li>
+                </ul>
+              </div>
+            </details>
+
+                        <details class="log-block" id="log-4.2.0">              <summary class="log-header">
                 <span class="log-version">v4.2.0</span>
                 <span class="log-date">2026-02-03</span>
                 <i class="fas fa-chevron-down log-icon"></i>

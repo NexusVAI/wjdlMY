@@ -36,8 +36,10 @@
   --shadow-nav: 0 10px 30px rgba(0, 0, 0, 0.06);
 
   /* Motion spec（极简但“全过渡”）：统一曲线/时长，避免杂乱 */
-  --ease-standard: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-standard: cubic-bezier(0.22, 0.61, 0.36, 1);
   --ease-linear: linear;
+  --ease-smooth: cubic-bezier(0.2, 0.8, 0.2, 1);
+
 
   --dur-xs: 120ms;
   --dur-sm: 180ms;
@@ -90,7 +92,9 @@
   --border: rgba(255, 255, 255, 0.12);
   --border-light: rgba(255, 255, 255, 0.08);
 
+
   /* 统一“玻璃卡片”系统（Dark）——2~3 档层级、阴影更雾化 */
+
   --glass-bg: rgba(26, 27, 30, 0.56);
   --glass-border: rgba(255, 255, 255, 0.10);
   --glass-border-strong: rgba(255, 255, 255, 0.14);
@@ -105,12 +109,13 @@
   --shadow-xl: 0 30px 120px rgba(0, 0, 0, 0.50);
   --shadow-nav: 0 10px 30px rgba(0, 0, 0, 0.34);
 
-  /* 深色蓝：稍降饱和，避免霓虹 */
-  --blue: #2f90ff;
+  /* 深色蓝：更亮一点（更有反转感），但仍避免霓虹 */
+  --blue: #0a84ff;
   --blue-light: #74ccff;
 
-  --glow-blue: rgba(47, 144, 255, 0.26);
-  --glow-cyan: rgba(116, 204, 255, 0.18);
+  --glow-blue: rgba(10, 132, 255, 0.34);
+  --glow-cyan: rgba(116, 204, 255, 0.22);
+
 
   /* 深色下 Hero 顶部过渡：更长、更低对比，移动端更“连贯一体” */
   --hero-top-fade: linear-gradient(
@@ -951,19 +956,9 @@ body.announcement-collapsed .announcement-peek {
   transform: translateY(0);
   pointer-events: auto;
 }
-
-@media (max-width: 768px) {
-  .announcement-inner {
-    padding: 10px 16px;
-    grid-template-columns: 38px 1fr auto;
-  }
-
-  .announcement-text {
-    font-size: 13px;
-  }
-}
-
+
 @media (max-width: 420px) {
+
   .announcement-inner {
     padding: 10px 12px;
     grid-template-columns: 36px 1fr;
@@ -1044,6 +1039,23 @@ body.announcement-collapsed .announcement-peek {
   text-decoration: none;
   letter-spacing: -0.6px;
 }
+
+
+.nav-logo {
+  width: auto;
+
+  height: 32px;
+  max-width: 56px;
+  margin-right: 10px;
+
+  vertical-align: -6px;
+  border-radius: 9px;  display: inline-block;
+  object-fit: contain;
+}
+
+
+
+
 
 .nav-menu {
   display: flex;
@@ -2316,7 +2328,8 @@ html[data-perf="low"] .perf-toggle {
   margin-top: 22px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 18px;
+
+  gap: 22px;
 }
 
 .usp-card {
@@ -2346,8 +2359,9 @@ html[data-perf="low"] .perf-toggle {
   margin-top: 22px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 18px;
+  gap: 22px;
 }
+
 
 .quickstart-card {
   background: var(--bg-card);
@@ -2680,11 +2694,12 @@ details.log-block.reveal.in-view {
   contain: layout paint;
 }
 
-/* 悬停动效：统一轻微上浮 */
+/*/* 悬停动效：统一轻微上浮 */
 :is(.product-card, .trust-card, .usp-card, .quickstart-card, .features li, details.log-block, .download-card, .video-wrapper, .filter-btn, .chip):hover {
   transform: translateY(-4px);
   box-shadow: var(--glass-shadow-hover);
   border-color: var(--glass-border-strong);
+  transition-timing-function: var(--ease-smooth);
 }
 
 /* 选中态：边缘泛光 + 蓝色辉光（支持 .active/.selected/.is-selected 和键盘 focus） */
@@ -3037,8 +3052,48 @@ details.log-block.reveal.in-view {
 
   color: rgba(255, 255, 255, 0.96);
   background: linear-gradient(90deg, var(--blue), var(--blue-light));
-  box-shadow: 0 14px 46px rgba(0, 122, 255, 0.22);
+  box-shadow:
+    0 14px 46px rgba(0, 122, 255, 0.22),
+    0 0 0 1px rgba(0, 122, 255, 0.16),
+    0 0 26px rgba(90, 200, 250, 0.14);
+}}
+
+@media (max-width: 768px) {
+  .news-card {
+    padding: 22px;
+  }
+
+@media (max-width: 768px) {
+  .news-card {
+    padding: 22px;
+  }
+
+  .news-card-head {
+    gap: 10px;
+  }
+
+  .news-title {
+    font-size: 1.25rem;
+  }
+
+  .news-listing {
+    padding-left: 16px;
+  }
 }
+
+  .news-card-head {
+    gap: 10px;
+  }
+
+  .news-title {
+    font-size: 1.25rem;
+  }
+
+  .news-listing {
+    padding-left: 16px;
+  }
+}
+
 
 .news-content {
   margin-top: 14px;
@@ -3131,7 +3186,11 @@ details.log-block.reveal.in-view {
 
   color: rgba(255, 255, 255, 0.96);
   background: linear-gradient(90deg, var(--blue), var(--blue-light));
-  box-shadow: 0 14px 46px rgba(0, 122, 255, 0.22);
+
+  box-shadow:
+    0 14px 46px rgba(0, 122, 255, 0.22),
+    0 0 0 1px rgba(0, 122, 255, 0.16),
+    0 0 26px rgba(90, 200, 250, 0.14);
 }
 
 .news-content {
@@ -3978,9 +4037,11 @@ details.log-block[open] .log-content {
   transition: border-color 0.2s ease;
 }
 
+.vide
 .video-caption a:hover {
   border-bottom-color: var(--blue);
 }
+
 
 /* 移动端适配 */
 @media (max-width: 768px) {
@@ -3990,6 +4051,37 @@ details.log-block[open] .log-content {
   
   .video-caption {
     font-size: 0.88rem;
+  }
+
+  /* 顶部导航：更“系统级”，避免拥挤 */
+  .navbar {
+    height: 64px;
+  }
+
+  .nav-brand {
+    font-size: 18px;
+    letter-spacing: -0.4px;
+
+  .nav-logo {
+    height: 28px;
+    max-width: 52px;
+    vertical-align: -5px;
+  }
+
+  /* 顶部导航：更“系统级”，避免拥挤 */
+  .navbar {
+    height: 64px;
+  }
+
+  .nav-brand {
+    font-size: 18px;
+    letter-spacing: -0.4px;
+  }
+
+  .nav-logo {
+    height: 28px;
+    max-width: 52px;
+    vertical-align: -5px;
   }
 }
 
@@ -4057,9 +4149,29 @@ details.log-block[open] .log-content {
   /* 更小屏：进一步收紧 section 与卡片 */
   .section {
     padding: 56px 14px;
+  }  }
+
+  /* 小屏标题更稳，避免“顶到边” */
+  .hero h1 {
+    font-size: clamp(2.35rem, 10vw, 3.05rem);
+    line-height: 1.06;
   }
 
-  .download-card {
+  .hero-content--split {
+    gap: 14px;
+  }
+
+  /* 小屏标题更稳，避免“顶到边” */
+  .hero h1 {
+    font-size: clamp(2.35rem, 10vw, 3.05rem);
+    line-height: 1.06;
+  }
+
+  .hero-content--split {
+    gap: 14px;
+  }
+
+ .download-card {
     padding: 18px;
   }
 
@@ -4074,9 +4186,30 @@ details.log-block[open] .log-content {
 
   .video-caption {
     padding: 0 10px;
+  }  }
+
+  /* 避免按钮两列挤爆：改为竖排 */
+  .hero-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-buttons .btn {
+    width: 100%;
+    max-width: 520px;
+  }
+
+  /* 避免按钮两列挤爆：改为竖排 */
+  .hero-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-buttons .btn {
+    width: 100%;
+    max-width: 520px;
   }
 }
-
 /* 移动端观感优化：降低噪点/聚光/光效密度，让页面更“干净” */
 @media (max-width: 768px) {
   :root {

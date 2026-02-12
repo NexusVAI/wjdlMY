@@ -570,15 +570,20 @@
         return;
       }
 
-      // 过去：NEW / 相对时间
+      // 过去：NEW（仅 3 天内显示）/ 相对时间
+      const THREE_DAYS = 3 * 24 * 60 * 60 * 1000;
+      const showNew = diffMs >= 0 && diffMs <= THREE_DAYS;
+
+      if (badge) {
+        badge.hidden = !showNew;
+        if (showNew) badge.textContent = 'NEW';
+      }
+
       if (diffMs < 60 * 1000) {
-        if (badge) {
-          badge.hidden = false;
-          badge.textContent = 'NEW';
-        }
         timeEl.textContent = `${formatAbsolute(published)}（刚刚）`;
         return;
       }
+
 
       if (diffMs < 60 * 60 * 1000) {
         const m = Math.max(1, Math.floor(diffMs / (60 * 1000)));
@@ -612,7 +617,10 @@
       const root = document.documentElement;
       if (root.getAttribute('data-fx') === 'off') return false;
       if (root.getAttribute('data-spotlight') === '0') return false;
+      // 移动端不启用（省电且触屏无鼠标）
+      if (window.matchMedia && window.matchMedia('(hover: none)').matches) return false;
       return true;
+
     }
 
     function schedule() {
@@ -681,11 +689,17 @@
         label: '查看公告'
       },
       {
+        text: '警察模组已更名为 TACTFR（原 EF Police Mod）',
+        href: '#police-mod',
+        label: '查看详情'
+      },
+      {
         text: '正在参加玩家动力跨年创作赛，点击下载助力冲榜',
         href: 'thanks.html?src=announcement',
         label: '前往活动页'
       }
     ];
+
 
     let idx = 0;
 
@@ -854,9 +868,10 @@
     setupNewsTimeLabels();
     setupReadingProgress();
     // setupMaterialRipple();
-    setupAnnouncementBar();
-    setupAnnouncementRotator();
-    // setupGlobalSpotlight();
+    setupAnnouncementBar();    setupAnnouncementRotator();
+    setupGlobalSpotlight();
+
+
 
     // 设置弹窗开关
     const settingsToggle = document.getElementById('settings-toggle');
