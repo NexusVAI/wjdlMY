@@ -36,7 +36,8 @@
   --shadow-nav: 0 10px 30px rgba(0, 0, 0, 0.06);
 
   /* Motion spec（极简但“全过渡”）：统一曲线/时长，避免杂乱 */
-  --ease-standard: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-standard: cubic-bezier(0.22, 0.61, 0.36, 1);
+
   --ease-linear: linear;
   --ease-smooth: cubic-bezier(0.2, 0.8, 0.2, 1);
 
@@ -78,7 +79,37 @@
 
   /* Hero 顶部过渡：用于消除公告栏下方的“断层”（拉长一点、更柔） */
   --hero-top-fade: linear-gradient(180deg, rgba(246, 247, 251, 0.92), rgba(246, 247, 251, 0.00) 82%);
+
+  /* 新春红色氛围滤镜（可按需微调透明度） */
+  --cny-red-tint: rgba(255, 59, 48, 0.08);
+  --cny-red-tint-strong: rgba(255, 59, 48, 0.12);
 }
+
+/* 全站“新春红”轻滤镜：不影响布局、仅叠加氛围 */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0; /* 置于最底层，仅做氛围叠加 */
+  background:
+
+    radial-gradient(1200px 800px at 18% 10%, var(--cny-red-tint-strong), transparent 60%),
+    radial-gradient(900px 700px at 82% 18%, var(--cny-red-tint), transparent 62%),
+    linear-gradient(180deg, rgba(255, 59, 48, 0.06), rgba(255, 255, 255, 0.00) 42%);
+  mix-blend-mode: multiply;
+}
+
+/* 深色主题下：避免过红发脏，稍微收敛强度 */
+[data-theme="dark"] body::before {
+  background:
+    radial-gradient(1200px 800px at 18% 10%, rgba(255, 59, 48, 0.09), transparent 60%),
+    radial-gradient(900px 700px at 82% 18%, rgba(255, 59, 48, 0.06), transparent 62%),
+    linear-gradient(180deg, rgba(255, 59, 48, 0.05), rgba(0, 0, 0, 0.00) 46%);
+  mix-blend-mode: screen;
+  opacity: 0.9;
+}
+
 
 [data-theme="dark"] {
   /* 深灰雾面：避免 #000 与高亮蓝“硬碰硬” */
@@ -956,7 +987,8 @@ body.announcement-collapsed .announcement-peek {
   transform: translateY(0);
   pointer-events: auto;
 }
-
+
+
 @media (max-width: 420px) {
 
   .announcement-inner {
@@ -1040,7 +1072,9 @@ body.announcement-collapsed .announcement-peek {
   letter-spacing: -0.6px;
 }
 
-
+
+
+
 .nav-logo {
   width: auto;
 
@@ -1049,7 +1083,8 @@ body.announcement-collapsed .announcement-peek {
   margin-right: 10px;
 
   vertical-align: -6px;
-  border-radius: 9px;  display: inline-block;
+  border-radius: 9px;
+  display: inline-block;
   object-fit: contain;
 }
 
@@ -3056,12 +3091,14 @@ details.log-block.reveal.in-view {
     0 14px 46px rgba(0, 122, 255, 0.22),
     0 0 0 1px rgba(0, 122, 255, 0.16),
     0 0 26px rgba(90, 200, 250, 0.14);
-}}
+}
+}
 
 @media (max-width: 768px) {
   .news-card {
     padding: 22px;
-  }
+  }
+
 
 @media (max-width: 768px) {
   .news-card {
@@ -4066,7 +4103,8 @@ details.log-block[open] .log-content {
     height: 28px;
     max-width: 52px;
     vertical-align: -5px;
-  }
+  }
+
 
   /* 顶部导航：更“系统级”，避免拥挤 */
   .navbar {
@@ -4149,7 +4187,8 @@ details.log-block[open] .log-content {
   /* 更小屏：进一步收紧 section 与卡片 */
   .section {
     padding: 56px 14px;
-  }  }
+  }  }
+
 
   /* 小屏标题更稳，避免“顶到边” */
   .hero h1 {
@@ -4186,7 +4225,8 @@ details.log-block[open] .log-content {
 
   .video-caption {
     padding: 0 10px;
-  }  }
+  }
+  }
 
   /* 避免按钮两列挤爆：改为竖排 */
   .hero-buttons {
@@ -4197,7 +4237,8 @@ details.log-block[open] .log-content {
   .hero-buttons .btn {
     width: 100%;
     max-width: 520px;
-  }
+  }
+
 
   /* 避免按钮两列挤爆：改为竖排 */
   .hero-buttons {
