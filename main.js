@@ -132,15 +132,15 @@
       return;
     }
 
+    // 只触发一次：避免在阈值边界反复进出导致动画重播“抖动”
     const io = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        // 进入视口：播放一次“出现”动效；离开视口：重置，便于下次再触发
         if (entry.isIntersecting) {
           entry.target.classList.add('in-view');
-        } else {
-          entry.target.classList.remove('in-view');
+          io.unobserve(entry.target);
         }
       });
+
     }, { root: null, threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
 
     revealEls.forEach(el => io.observe(el));

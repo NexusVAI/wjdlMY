@@ -168,7 +168,49 @@ html {
   -webkit-font-smoothing: antialiased;
 }
 
+/* 视觉稳定性：避免某些设备/浏览器下“亚像素抖动/抖屏” */
+
+/* 视觉稳定性：避免某些设备/浏览器下“亚像素抖动/抖屏” */
 body {
+  overflow-x: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+/* reveal 动效：只进场一次，避免滚动边界来回触发导致“抖” */
+.reveal {
+  will-change: transform, opacity;
+}
+.reveal.in-view {
+  pointer-events: auto;
+}
+.reveal:not(.in-view) {
+  pointer-events: none;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+/* reveal 动效：只进场一次，避免滚动边界来回触发导致“抖” */
+.reveal {
+  will-change: transform, opacity;
+}
+.reveal.in-view {
+  pointer-events: auto;
+}
+.reveal:not(.in-view) {
+  pointer-events: none;
+}
+
+body {
+
   font-family: var(--font-sans);
   font-size: var(--text-base);
   text-rendering: optimizeLegibility;
