@@ -34,15 +34,32 @@
           <i class="fas fa-newspaper"></i>
           新闻
         </a>
-        <a href="#police-mod" class="nav-item" data-page="police-mod">
-          <i class="fas fa-shield-alt"></i>
-          TACTFR
-          <span class="nav-badge nav-badge--hot" aria-label="热门">HOT</span>
-        </a>
+        <div class="nav-item nav-dropdown" data-page="police-mod" id="nav-tactfr">
+          <button class="nav-dropdown-toggle" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="TACTFR 菜单">
+            <i class="fas fa-shield-alt"></i>
+            TACTFR
+            <span class="nav-badge nav-badge--hot" aria-label="热门">HOT</span>
+            <i class="fas fa-chevron-down nav-dropdown-icon" aria-hidden="true"></i>
+          </button>
+          <div class="nav-dropdown-menu" role="menu" aria-label="TACTFR 选择">
+            <a class="nav-dropdown-item" href="#police-mod" role="menuitem" data-page="police-mod">
+              原来的网页
+            </a>
+            <a class="nav-dropdown-item" href="https://guixngyu88730882.github.io/TACTFR-Concept-Edition/" target="_blank" rel="noopener noreferrer" role="menuitem">
+              概念版网页
+            </a>
+          </div>
+        </div>
         <a href="#yuyu-tool" class="nav-item" data-page="yuyu-tool">
           <i class="fas fa-tools"></i>
           EF 宇宇修改器
           <span class="nav-badge nav-badge--new" aria-label="刚更新">NEW</span>
+        </a>
+
+        <a href="https://guixngyu88730882.github.io/consciousness/" class="nav-item" data-external="1" target="_blank" rel="noopener noreferrer">
+          <i class="fas fa-bolt"></i>
+          consciousness
+          <span class="nav-badge nav-badge--new" aria-label="测试版">bata</span>
         </a>
 
         <a href="#about-us" class="nav-item" data-page="home" data-anchor="#about-us">
@@ -83,6 +100,37 @@
     公告
   </button>
 
+  <!-- 进入提示弹窗（控制策略：每刷新 5 次弹出 1 次） -->
+  <div class="welcome-modal" id="welcome-modal" aria-hidden="true">
+    <div class="welcome-modal__backdrop" data-welcome-close="1" aria-hidden="true"></div>
+    <div class="welcome-modal__panel" role="dialog" aria-modal="true" aria-label="站点发布公告">
+      <button class="welcome-modal__close" type="button" aria-label="关闭弹窗" data-welcome-close="1">
+        <i class="fas fa-times"></i>
+      </button>
+
+      <div class="welcome-modal__shine" aria-hidden="true"></div>
+
+      <div class="welcome-modal__content">
+        <div class="welcome-modal__kicker">发布</div>
+        <h2 class="welcome-modal__title">今天，我们隆重推出 <span class="welcome-modal__em">consciousness</span> 预览</h2>
+        <p class="welcome-modal__sub">一次面向未来的实验：更像“活着”的交互、更强的可扩展性、更清晰的工程化路线。</p>
+
+        <div class="welcome-modal__actions">
+          <a class="btn primary btn-liquid" href="https://guixngyu88730882.github.io/consciousness/" target="_blank" rel="noopener noreferrer">
+            <span class="liquid-refraction"></span>
+            立即体验
+          </a>
+          <button class="btn ghost btn-liquid" type="button" data-welcome-close="1">
+            <span class="liquid-refraction"></span>
+            稍后再说
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--（已移除重复的 welcome-modal 节点，避免 ID 冲突）-->
+
   <!-- 移动端菜单（抽屉/遮罩） -->
   <div class="mobile-nav-overlay" id="mobile-nav-overlay" aria-hidden="true">
     <div class="mobile-nav-panel" role="dialog" aria-modal="true" aria-label="站点菜单">
@@ -101,11 +149,22 @@
           <i class="fas fa-newspaper"></i>
           新闻
         </a>
-        <a href="#police-mod" class="nav-item" data-page="police-mod">
-          <i class="fas fa-shield-alt"></i>
-          TACTFR
-          <span class="nav-badge nav-badge--hot" aria-label="热门">HOT</span>
-        </a>
+        <div class="nav-item nav-dropdown" data-page="police-mod" id="nav-tactfr">
+          <button class="nav-dropdown-toggle" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="TACTFR 菜单">
+            <i class="fas fa-shield-alt"></i>
+            TACTFR
+            <span class="nav-badge nav-badge--hot" aria-label="热门">HOT</span>
+            <i class="fas fa-chevron-down nav-dropdown-icon" aria-hidden="true"></i>
+          </button>
+          <div class="nav-dropdown-menu" role="menu" aria-label="TACTFR 选择">
+            <a class="nav-dropdown-item" href="#police-mod" role="menuitem" data-page="police-mod">
+              原来的网页
+            </a>
+            <a class="nav-dropdown-item" href="https://guixngyu88730882.github.io/TACTFR-Concept-Edition/" target="_blank" rel="noopener noreferrer" role="menuitem">
+              概念版网页
+            </a>
+          </div>
+        </div>
         <a href="#yuyu-tool" class="nav-item" data-page="yuyu-tool">
           <i class="fas fa-tools"></i>
           EF 宇宇修改器
@@ -414,6 +473,84 @@
 
       <section class="section" id="news-feed" aria-label="EF Mods 新闻列表">
         <div class="news-list">
+          <article class="news-card" aria-label="重磅｜Consciousness：AI 驱动的次世代 NPC 模组">
+            <div class="news-card-head">
+              <h2 class="news-title">重磅｜Consciousness：AI 驱动的次世代 NPC 模组</h2>
+              <div class="news-meta" aria-label="发布时间">
+                <time class="news-time" datetime="2026-02-21T22:00:00" data-news-published="2026-02-21T22:00:00">2026-02-21 22:00</time>
+                <span class="news-badge" aria-label="重磅发布">HOT</span>
+              </div>
+            </div>
+
+            <div class="news-content">
+              <p>
+                今天，我们正式公开一个正在推进中的前沿项目：<strong>Consciousness</strong>——一个由本地 LLM 驱动 NPC 行为的次世代模组。
+              </p>
+
+              <h3 class="news-h3">什么是 Consciousness？</h3>
+              <p>
+                Consciousness 不是一个简单的"对话模组"或"脚本增强包"。它的核心目标是：<strong>将真正的 AI 接入洛圣都</strong>。
+              </p>
+              <p>
+                想象一下：NPC 不再只是按预设脚本重复同样的台词和行为。他们能够理解你的行动、记住你的选择、并根据你的行为做出动态反应。
+              </p>
+              <ul class="news-listing">
+                <li><strong>记忆系统</strong>：NPC 能够记住与玩家的互动历史，形成持续性的"认知"。</li>
+                <li><strong>情境感知</strong>：NPC 知道你做了什么——你昨天在街头做了什么、你最近的行为模式、你与这个城市的关系。</li>
+                <li><strong>动态响应</strong>：基于本地 LLM 的推理能力，NPC 能够生成自然、连贯、符合情境的对话与行为。</li>
+                <li><strong>隐私优先</strong>：所有 AI 推理在本地完成，无需联网，你的游戏数据不会离开你的设备。</li>
+              </ul>
+
+              <h3 class="news-h3">为什么这很重要？</h3>
+              <p>
+                传统模组的 NPC 行为是"静态"的——无论你玩了多少小时，NPC 永远重复同样的台词、同样的反应。这让游戏世界在新鲜感消退后变得"空洞"。
+              </p>
+              <p>
+                Consciousness 要打破这个限制。我们希望让洛圣都成为一个<strong>真正活着的世界</strong>——一个会因为你而改变的世界。
+              </p>
+
+              <h3 class="news-h3">项目状态</h3>
+              <p>
+                目前 Consciousness 处于<strong>内测阶段</strong>。核心架构已经搭建完成，我们正在持续优化性能表现与行为稳定性。
+              </p>
+              <p>
+                如果你对此感兴趣，并且愿意参与早期测试、提供反馈，我们诚挚邀请你加入内测计划。
+              </p>
+
+              <div class="download-actions" style="margin-top: 16px;">
+                <a class="btn primary btn-liquid" href="https://guixngyu88730882.github.io/consciousness/" target="_blank" rel="noopener noreferrer">
+                  <span class="liquid-refraction"></span>
+                  申请加入内测
+                </a>
+              </div>
+
+              <h3 class="news-h3">我们需要你的帮助</h3>
+              <p>
+                Consciousness 是一个雄心勃勃的项目，我们深知单靠现有团队难以快速推进。因此，我们正在<strong>广泛招募人才</strong>：
+              </p>
+              <ul class="news-listing">
+                <li><strong>C# 开发者</strong>：熟悉 ScriptHookVDotNet，有 GTA5 模组开发经验优先。</li>
+                <li><strong>AI/LLM 工程师</strong>：了解本地模型部署、推理优化、Prompt 工程。</li>
+                <li><strong>测试与反馈</strong>：热爱 GTA5、愿意花时间测试新功能并提供详细反馈。</li>
+                <li><strong>内容创作者</strong>：能够制作视频、撰写文章，帮助更多人了解这个项目。</li>
+              </ul>
+              <p>
+                无论你是资深开发者还是刚入门的新手，只要你有热情、有时间、愿意学习，我们都欢迎你的加入。
+              </p>
+
+              <div class="download-actions" style="margin-top: 16px;">
+                <a class="btn ghost btn-liquid" href="https://guixngyu88730882.github.io/GTA-Open-platform/" target="_blank" rel="noopener noreferrer">
+                  <span class="liquid-refraction"></span>
+                  加入我们的团队
+                </a>
+              </div>
+
+              <p class="warning" style="margin-top: 14px;">
+                Consciousness 代表了我们对 GTA5 模组未来的想象：不只是"更多功能"，而是<strong>更智能的体验</strong>。如果你也认同这个方向，欢迎加入我们。
+              </p>
+            </div>
+          </article>
+
           <article class="news-card" aria-label="我们开通了 GTA5 模组开放平台">
             <div class="news-card-head">
               <h2 class="news-title">我们开通了 GTA5 模组开放平台</h2>

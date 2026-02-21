@@ -3,6 +3,8 @@
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('efmods-theme', theme);
 
+    try { updateNavPill(); } catch (e) { /* ignore */ }
+
     const themeToggle = document.getElementById('theme-toggle');
     if (!themeToggle) return;
 
@@ -17,6 +19,7 @@
       themeToggle.setAttribute('title', '切换到深色主题');
     }
   }
+
   function setFxMode(mode) {
     const root = document.documentElement;
     const m = mode === 'off' ? 'off' : 'on';
@@ -50,7 +53,6 @@
 
     if (m === 'low') {
       root.setAttribute('data-perf', 'low');
-      // 低性能 = 尽量关特效（与“性能模式”一致）
       setFxMode('off');
     } else {
       root.removeAttribute('data-perf');
@@ -92,7 +94,6 @@
     if (btnVisual) btnVisual.classList.toggle('active', fx === 'on');
     if (btnPerf) btnPerf.classList.toggle('active', fx === 'off');
 
-    // 开发者工具：时间模拟
     const range = document.getElementById('setting-time-hour');
     const label = document.getElementById('setting-time-hour-label');
     if (range && label) {
@@ -113,7 +114,6 @@
 
     const revealEls = Array.from(scopeEl.querySelectorAll('.section, details.log-block'));
 
-    // 统一加 reveal，并为日志卡片添加“逐条错峰”延迟（更有景深/节奏）
     let logIndex = 0;
     revealEls.forEach(el => {
       el.classList.add('reveal');
@@ -132,16 +132,15 @@
       return;
     }
 
-    // 只触发一次：避免在阈值边界反复进出导致动画重播“抖动”
     const io = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('in-view');
-          io.unobserve(entry.target);
+        } else {
+          entry.target.classList.remove('in-view');
         }
       });
-
-    }, { root: null, threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    }, { root: null, threshold: 0.15, rootMargin: '0px 0px -5% 0px' });
 
     revealEls.forEach(el => io.observe(el));
   }
@@ -196,7 +195,6 @@
     document.querySelectorAll(`.nav-item[data-page][href="${pageId}"]`).forEach(el => el.classList.add('active'));
     updateNavPill();
 
-    // 切换到同一页：只处理锚点滚动
     if (currentPage === targetPage) {
       if (anchorId) {
         const anchorEl = document.querySelector(anchorId);
@@ -207,7 +205,6 @@
       return;
     }
 
-    // 退出动画：让上一页先淡出，再切到下一页淡入（更丝滑）
     if (currentPage) {
       currentPage.classList.add('page-exit');
       setTimeout(() => {
@@ -216,10 +213,18 @@
       }, 520);
     }
 
-    // 先激活新页（淡入）
     setTimeout(() => {
       targetPage.classList.add('active-page');
       setupReveal(targetPage);
+
+      setTimeout(() => {
+        targetPage.querySelectorAll('.reveal:not(.in-view)').forEach(el => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight && rect.bottom > 0) {
+            el.classList.add('in-view');
+          }
+        });
+      }, 100);
 
       if (anchorId) {
         const anchorEl = document.querySelector(anchorId);
@@ -263,7 +268,6 @@
       return true;
     }
 
-    // 降级方案：execCommand（旧浏览器）
     const ta = document.createElement('textarea');
     ta.value = value;
     ta.setAttribute('readonly', '');
@@ -304,7 +308,6 @@
   }
 
   function setupHeroSubtitleRotator() {
-    // 极简风：不轮播，只保留 HTML 里写死的副标题文本
     const el = document.getElementById('hero-subtitle');
     if (!el) return;
     el.textContent = (el.textContent || '').trim();
@@ -331,18 +334,108 @@
       fallback.hidden = false;
     }
 
-    // 网络/解码失败
     video.addEventListener('error', switchToFallback, { once: true });
 
-    // 国内访问 GitHub Pages 可能出现“长时间卡在加载中”，做一个超时降级
     window.setTimeout(() => {
       const ok = (video.readyState >= 2) || (video.currentTime > 0);
       if (!ok) switchToFallback();
     }, 3000);
   }
 
+  function setupWelcomeModal() {
+    const modal = document.getElementById('welcome-modal');
+    if (!modal) return;
+
+    const STORAGE_KEY = 'efmods-welcome-refresh-count-v1';
+    const EVERY = 5;
+
+    function open() {
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('modal-open');
+    }
+
+    function close() {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('modal-open');
+    }
+
+    modal.addEventListener('click', function (e) {
+      const t = e.target;
+      if (!(t instanceof Element)) return;
+      if (t.closest('[data-welcome-close="1"]')) close();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) close();
+    });
+
+    let n = 0;
+    try { n = parseInt(localStorage.getItem(STORAGE_KEY) || '0', 10) || 0; } catch (e) { n = 0; }
+    n += 1;
+
+    const shouldShow = (n % EVERY) === 0;
+    try { localStorage.setItem(STORAGE_KEY, String(n)); } catch (e) { /* ignore */ }
+
+    if (!shouldShow) return;
+
+    window.setTimeout(open, 420);
+  }
+
+  function setupNavDropdowns() {
+    const dropdowns = Array.from(document.querySelectorAll('.nav-dropdown'));
+    if (!dropdowns.length) return;
+
+    function closeAll() {
+      dropdowns.forEach(dd => {
+        dd.classList.remove('is-open');
+        const btn = dd.querySelector('.nav-dropdown-toggle');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+      });
+    }
+
+    dropdowns.forEach(dd => {
+      const btn = dd.querySelector('.nav-dropdown-toggle');
+      if (!btn) return;
+
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        const open = dd.classList.contains('is-open');
+        closeAll();
+        if (!open) {
+          dd.classList.add('is-open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+
+      const original = dd.querySelector('.nav-dropdown-item[data-page]');
+      if (original) {
+        original.addEventListener('click', function (e) {
+          e.preventDefault();
+          const pageKey = this.getAttribute('data-page');
+          if (!pageKey) return;
+          closeAll();
+          const pageId = `#${pageKey}`;
+          showPage(pageId);
+          window.history.pushState(null, '', pageId);
+        });
+      }
+    });
+
+    document.addEventListener('click', function (e) {
+      const t = e.target;
+      if (!(t instanceof Element)) return;
+      if (t.closest('.nav-dropdown')) return;
+      closeAll();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeAll();
+    });
+  }
+
   function setupMaterialRipple() {
-    // 事件委托：兼容动态插入的按钮（如 Hero subtitle 内的“加入我们”）
     document.addEventListener('pointerdown', function (e) {
       const target = e.target;
       if (!(target instanceof Element)) return;
@@ -350,7 +443,6 @@
       const el = target.closest('.btn, .chip, .nav-item, .theme-toggle, .nav-toggle, .mobile-nav-close');
       if (!el) return;
 
-      // 右键/触控笔按键不触发
       if (typeof e.button === 'number' && e.button !== 0) return;
 
       const rect = el.getBoundingClientRect();
@@ -365,7 +457,6 @@
       ripple.style.left = `${x}px`;
       ripple.style.top = `${y}px`;
 
-      // 清理上一次未结束的波纹，避免堆积
       const old = el.querySelector('.md-ripple');
       if (old) old.remove();
 
@@ -478,7 +569,6 @@
     }
 
     function computeState(nowMin) {
-      // 仅处理“同一天 09:00-23:00”这类时段（不跨天）
       const isOn = nowMin >= startMin && nowMin < endMin;
 
       if (isOn) {
@@ -525,7 +615,6 @@
     function renderOne(timeEl) {
       const raw = timeEl.getAttribute('data-news-published') || timeEl.getAttribute('datetime') || '';
 
-      // 用本地时间解析（用户要求“2026/02/02 晚上10:00发布”，这里按访问者当地时区展示）
       let published = null;
       if (/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}/.test(raw)) {
         const parts = raw.split('T');
@@ -542,18 +631,14 @@
       const diffMs = now.getTime() - published.getTime();
 
       const card = timeEl.closest('.news-card');
-      // 兼容：历史 HTML 有的 badge 没有 data-news-badge（例如最早几条写死 NEW/HOT）
       const badge = card ? (card.querySelector('[data-news-badge]') || card.querySelector('.news-badge')) : null;
 
-
-      // 默认显示绝对时间（避免“刚好跨时区/跨天”造成误解）
       timeEl.textContent = formatAbsolute(published);
 
       if (badge) {
         badge.hidden = true;
       }
 
-      // 未来：显示倒计时提示（但仍保留绝对时间）
       if (diffMs < 0) {
         const sec = Math.ceil(Math.abs(diffMs) / 1000);
         if (sec <= 60) {
@@ -572,7 +657,6 @@
         return;
       }
 
-      // 过去：NEW（仅 3 天内显示）/ 相对时间
       const THREE_DAYS = 3 * 24 * 60 * 60 * 1000;
       const showNew = diffMs >= 0 && diffMs <= THREE_DAYS;
 
@@ -585,7 +669,6 @@
         timeEl.textContent = `${formatAbsolute(published)}（刚刚）`;
         return;
       }
-
 
       if (diffMs < 60 * 60 * 1000) {
         const m = Math.max(1, Math.floor(diffMs / (60 * 1000)));
@@ -610,6 +693,7 @@
     renderAll();
     window.setInterval(renderAll, 30 * 1000);
   }
+
   function setupGlobalSpotlight() {
     let rafId = 0;
     let lastX = 0;
@@ -619,10 +703,8 @@
       const root = document.documentElement;
       if (root.getAttribute('data-fx') === 'off') return false;
       if (root.getAttribute('data-spotlight') === '0') return false;
-      // 移动端不启用（省电且触屏无鼠标）
       if (window.matchMedia && window.matchMedia('(hover: none)').matches) return false;
       return true;
-
     }
 
     function schedule() {
@@ -664,10 +746,27 @@
 
       peekBtn.hidden = !collapsed;
       localStorage.setItem(KEY, collapsed ? '1' : '0');
+
+      if (!collapsed) {
+        localStorage.setItem('efmods-announcement-glow', '0');
+      }
     }
 
-    const collapsed = localStorage.getItem(KEY) === '1';
+    const collapsed = localStorage.getItem(KEY) !== '0';
     applyCollapsed(collapsed);
+
+    const glowKey = 'efmods-announcement-glow';
+    if (collapsed) {
+      const lastGlow = localStorage.getItem(glowKey);
+      const now = Date.now();
+      const oneDay = 24 * 60 * 60 * 1000;
+      if (!lastGlow || now - parseInt(lastGlow) > oneDay) {
+        if (Math.random() < 0.3) {
+          document.body.classList.add('announcement-glow');
+          localStorage.setItem(glowKey, now.toString());
+        }
+      }
+    }
 
     closeBtn.addEventListener('click', function () {
       applyCollapsed(true);
@@ -683,16 +782,23 @@
     const linkEl = document.getElementById('announcement-link');
     if (!textEl || !linkEl) return;
 
-    // 公告轮播（仅保留一条：开放平台邀请）
     const items = [
       {
-        text: '我们诚邀各位对模组感兴趣的加入我们，详情请访问开放平台',
-        href: 'https://guixngyu88730882.github.io/GTA-Open-platform/',
-        label: '访问平台'
+        text: '重磅声明：本站模组全部迁移至增强版专区，传承版不再更新！',
+        href: '#news',
+        label: '查看公告'
+      },
+      {
+        text: '警察模组已更名为 TACTFR（原 EF Police Mod）',
+        href: '#police-mod',
+        label: '查看详情'
+      },
+      {
+        text: '正在参加玩家动力跨年创作赛，点击下载助力冲榜',
+        href: 'thanks.html?src=announcement',
+        label: '前往活动页'
       }
     ];
-
-
 
     let idx = 0;
 
@@ -822,7 +928,6 @@
       setToastVisible(mood === 'late');
     }
 
-    // 暴露给“开发者工具”调用（调整滑杆后立即生效）
     window.__efmodsApplyTimeMood = apply;
 
     ensureLayers();
@@ -850,9 +955,6 @@
       setPerfMode(savedPerf);
     }
 
-    // 极简模式：关闭氛围层/聚光等重效果（保留主题切换、导航与核心交互）
-    // setupTimeMood();
-
     setupCopyButtons();
     setupHeroSubtitleRotator();
     setupHeroVideoFallback();
@@ -860,15 +962,10 @@
     setupOnlineTimeStatus();
     setupNewsTimeLabels();
     setupReadingProgress();
-    // setupMaterialRipple();
     setupAnnouncementBar();
     setupAnnouncementRotator();
     setupGlobalSpotlight();
 
-
-
-
-    // 设置弹窗开关
     const settingsToggle = document.getElementById('settings-toggle');
     const settingsOverlay = document.getElementById('settings-overlay');
     const settingsClose = document.getElementById('settings-close');
@@ -905,7 +1002,6 @@
       });
     }
 
-    // 设置项绑定
     const cbTime = document.getElementById('setting-show-time');
     if (cbTime) {
       cbTime.addEventListener('change', function () {
@@ -932,7 +1028,6 @@
     const btnPerf = document.getElementById('setting-fx-perf');
     if (btnPerf) btnPerf.addEventListener('click', () => setPerfMode('low'));
 
-    // 开发者工具：时间模拟（仅影响本页面氛围显示，不会改变系统时间）
     const timeRange = document.getElementById('setting-time-hour');
     const timeReset = document.getElementById('setting-time-reset');
     if (timeRange) {
@@ -1017,6 +1112,8 @@
     const navItems = document.querySelectorAll('.nav-item[data-page]');
     navItems.forEach(item => {
       item.addEventListener('click', function (e) {
+        if (this.closest('.nav-dropdown')) return;
+
         e.preventDefault();
 
         const pageKey = this.getAttribute('data-page');
@@ -1034,7 +1131,6 @@
     showFromHash(window.location.hash || '#home');
     window.addEventListener('popstate', function () {
       showFromHash(window.location.hash || '#home');
-
     });
 
     window.addEventListener('hashchange', function () {
@@ -1044,5 +1140,9 @@
     window.addEventListener('resize', function () {
       updateNavPill();
     });
+
+    setupWelcomeModal();
+    setupNavDropdowns();
   });
+
 })();
