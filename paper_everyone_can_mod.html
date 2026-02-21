@@ -1,0 +1,212 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0a84ff" />
+  <title>文章｜人人都能做模组：AI 时代的创作入门与成长路径</title>
+  <meta name="description" content="人人都能做模组：AI 时代的 GTA5 创作入门与成长路径（发布时间：2026-02-21）。" />
+  <link rel="stylesheet" href="styles.css?v=20260206" />
+  <style>
+    .paper-toolbar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      margin-top: 16px;
+    }
+
+    .paper-meta {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    pre.paper {
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--text-main);
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="main-content">
+    <section class="page active-page" id="paper">
+      <header class="hero">
+        <div class="hero-content">
+          <div class="hero-kicker">文章</div>
+          <h1 class="hero-headline">人人都能做模组：AI 时代的 GTA5 创作入门与成长路径</h1>
+          <p class="subtitle">发布时间：<strong>2026-02-21</strong> ｜ 原稿</p>
+
+          <div class="hero-buttons">
+            <a class="btn primary btn-liquid" href="index.html#home">
+              <span class="liquid-refraction"></span>
+              返回首页
+            </a>
+            <a class="btn ghost btn-liquid" href="index.html#news">
+              <span class="liquid-refraction"></span>
+              返回新闻
+            </a>
+          </div>
+
+          <div class="paper-toolbar" aria-label="文章工具栏">
+            <button class="btn ghost btn-liquid" type="button" id="paper-copy">
+              <span class="liquid-refraction"></span>
+              复制全文
+            </button>
+          </div>
+        </div>
+        <div class="hero-fade" aria-hidden="true"></div>
+      </header>
+
+      <section class="section" id="paper-note">
+        <h2>说明</h2>
+        <div class="download-card paper-meta">
+          <p>
+            本文是面向新手的“可执行路线”文章，强调稳定、可维护与可协作；内容为经验总结与方法论，不包含任何外部资源加载。
+          </p>
+        </div>
+      </section>
+
+      <section class="section" id="paper-full">
+        <h2>正文（Markdown 原文）</h2>
+        <div class="download-card">
+          <pre class="paper" id="paper-content" aria-live="polite"># 人人都能做模组：AI 时代的 GTA5 创作入门与成长路径（网页稿）
+
+发布时间：2026-02-21  
+作者：EF Mods（网页稿）
+
+## 摘要
+“做模组”曾经看起来像少数人的硬核游戏：配置环境、理解脚本运行时、读 API 文档、不断复现崩溃与冲突。进入 2026 年，AI 把学习成本显著压缩：你不再需要从零背完所有概念才能动手，而是可以在“边做边学”的节奏里快速完成第一个可用作品。本文给出一条面向新手的可执行路径：从安全合规与环境搭建开始，到最小可用模组（MVP）的实现、日志与排错方法、性能与兼容策略，再到发布与迭代的社区协作方式。结论是：人人都能做模组，但“稳定、可维护、可协作”的模组需要工程化习惯；而 AI 最适合做的，是把你从“被术语劝退”变成“能跑起来、能持续改进”。
+
+## 1. 为什么现在学做模组，是一件很棒的事
+### 1.1 模组是一种“把想法变成体验”的能力
+玩家的灵感往往很具体：更真实的执法流程、更合理的 NPC 反应、更顺手的 UI、更沉浸的音效与交互。模组让这些想法不止停留在吐槽与脑补，而是变成可下载、可复现、可分享的内容。
+
+### 1.2 AI 让“入门门槛”变成“入门路径”
+过去你可能需要：
+- 反复搜索同一个报错，阅读零散帖子的不同说法；
+- 对着一段看不懂的示例代码硬抄，然后祈祷它能跑；
+- 依赖别人总结好的教程，更新一来就过期。
+
+现在你可以让 AI：
+- 解释概念（tick、事件、原生函数、配置/存档）与它们在你的项目里分别对应哪段代码；
+- 把你的中文需求翻译成“清晰的实现步骤与伪代码”；
+- 帮你写“最小可用版本”，再由你逐步改好、改稳、改兼容。
+
+但要强调：**AI 不能替你承担测试、兼容性验证与风险判断。**它能帮你更快上路，但方向盘仍在你手里。
+
+## 2. 你需要的不是“学完”，而是“先跑起来”
+### 2.1 先定义你的第一个 MVP
+一个好的新手 MVP 具备三点：
+1) **目标小**：改一个 UI 提示、加一个快捷键、在特定条件下刷出提示/标记；  
+2) **可验证**：你能在 30 秒内确认它“成功/失败”；  
+3) **可扩展**：后续能加配置、加日志、加性能优化。
+
+示例（仅作方向）：  
+- “按下某个键，显示当前坐标/时间/速度（用于调试）”；  
+- “进入载具时弹出自定义提示，并写入一行日志”；  
+- “为某类事件加一个冷却时间，避免刷屏/掉帧”。
+
+### 2.2 把问题拆成：输入 → 状态 → 输出
+无论你做的是警察玩法、菜单 UI、还是 NPC 行为，最终都能拆成：
+- 输入：按键、事件、游戏状态变化；
+- 状态：你自己的变量、配置、冷却、缓存；
+- 输出：提示、UI、生成对象、改数值、写日志。
+
+当你用这种方式表达需求，AI 的帮助会更准确；你自己排错也更快。
+
+## 3. 新手最容易踩的坑：崩溃、冲突、掉帧
+### 3.1 崩溃：先“能复现”，再“能定位”
+原则只有一句：**没有稳定复现步骤的问题，几乎不可能被稳定修好。**
+
+建议你每次改动都保持：
+- 版本号（哪怕是 `0.1.0-dev` 这种）；
+- 改动记录（改了什么、为什么改）；
+- 最短复现流程（从进游戏到触发错误的步骤）。
+
+### 3.2 冲突：默认假设“会冲突”
+生态里很难做到“我不碰你、你不碰我”。降低冲突的思路通常是：
+- 尽量避免硬覆盖与全局性修改；
+- 能做成可开关的功能就别做成强制；
+- 遇到关键依赖，写清楚版本与前置条件。
+
+### 3.3 掉帧：每帧都执行的逻辑，必须克制
+很多脚本都有 tick/循环；新手常见问题是“每帧做太多”。几个朴素但有效的策略：
+- 能缓存就缓存，别反复查同一件事；
+- 能降低频率就降低频率（例如 100ms 一次，而不是每帧）；
+- 能做事件驱动就别做轮询。
+
+## 4. AI 时代的正确打开方式：让它做“助手”，不是“作者”
+你可以让 AI 帮你：
+- 生成项目骨架与基础结构；
+- 把你的需求转成明确的步骤与检查清单；
+- 帮你读日志、猜测最可能的原因并给出验证方法；
+- 把一段难懂代码解释成“它在做什么、哪里可能出错、怎么更稳”。
+
+你不应该让 AI 替你：
+- 直接“拼接一堆代码就发布”；
+- 在不了解风险时改核心逻辑/内存相关内容；
+- 不测试就宣称兼容所有版本/所有模组。
+
+一句话总结：**AI 让你更快写出来，但“作品感”来自你把它打磨到稳定。**
+
+## 5. 一条现实的成长路线（从 0 到可发布）
+### 5.1 第 1 周：跑通环境 + 写出第一个 MVP
+- 只做一个功能点；
+- 加最基础的日志；
+- 学会用“最短复现步骤”描述问题。
+
+### 5.2 第 2–4 周：把作品变得“可维护”
+- 引入配置（可开关、可调参数）；
+- 明确版本与变更记录；
+- 处理边界条件（载入/切换/死亡/重生等）。
+
+### 5.3 第 2 个月起：开始做工程化与协作
+- 模块化拆分；
+- 兼容性策略（与主流生态共存）；
+- 自动化/半自动化测试思路；
+- 让用户反馈可用（日志、版本号、复现步骤）。
+
+## 6. 结语：人人都能做，但你会选择做“哪一种作者”
+模组创作最迷人的地方，是它把“玩家”变成“创作者”。在 2026 年，AI 把第一步变得更轻松，但也更考验你的取舍：你是追求短期炫技的代码堆叠，还是追求长期可维护的作品？  
+如果你愿意把稳定性、兼容性与工程化当作作品的一部分，那么“人人都能做模组”就不只是口号，而是你能把想法持续交付的能力。
+
+—— 完 ——</pre>
+        </div>
+
+      </section>
+    </section>
+  </main>
+  <script>
+    (function () {
+      const el = document.getElementById("paper-content");
+      const btnCopy = document.getElementById("paper-copy");
+
+      if (btnCopy) {
+        btnCopy.addEventListener("click", async function () {
+          try {
+            await navigator.clipboard.writeText(el?.textContent || "");
+            btnCopy.textContent = "已复制";
+            setTimeout(() => (btnCopy.textContent = "复制全文"), 1200);
+          } catch (e) {
+            btnCopy.textContent = "复制失败";
+            setTimeout(() => (btnCopy.textContent = "复制全文"), 1200);
+          }
+        });
+      }
+    })();
+  </script>
+
+
+
+  <script src="main.js" defer></script>
+</body>
+</html>
+

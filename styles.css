@@ -2683,7 +2683,27 @@ html[data-perf="low"] .perf-toggle {
   filter: blur(0);
 }
 
+/* 修复：开特效时“新闻页面看不到文章”——reveal 初始态透明导致未触发/未加 in-view 时内容不可见。
+   新闻页直接禁用 reveal 的隐藏态，保证文章始终可见（仍保留其它页面的动效）。 */
+#news .section.reveal,
+#news details.log-block.reveal {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+}
+
+
+/* 修复：开特效时“新闻页面看不到文章”——reveal 初始态透明导致未触发/未加 in-view 时内容不可见。
+   新闻页直接禁用 reveal 的隐藏态，保证文章始终可见（仍保留其它页面的动效）。 */
+#news .section.reveal,
+#news details.log-block.reveal {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+}
+
 /* 更新日志卡片：同样的“景深/缓动” */
+
 details.log-block.reveal {
   opacity: 0;
   transform: translateY(18px) scale(0.995);

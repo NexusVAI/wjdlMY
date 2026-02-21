@@ -542,7 +542,9 @@
       const diffMs = now.getTime() - published.getTime();
 
       const card = timeEl.closest('.news-card');
-      const badge = card ? card.querySelector('[data-news-badge]') : null;
+      // 兼容：历史 HTML 有的 badge 没有 data-news-badge（例如最早几条写死 NEW/HOT）
+      const badge = card ? (card.querySelector('[data-news-badge]') || card.querySelector('.news-badge')) : null;
+
 
       // 默认显示绝对时间（避免“刚好跨时区/跨天”造成误解）
       timeEl.textContent = formatAbsolute(published);
@@ -681,24 +683,15 @@
     const linkEl = document.getElementById('announcement-link');
     if (!textEl || !linkEl) return;
 
-    // 新用户进来先看到“重磅声明”，随后轮播到“冲榜赛”
+    // 公告轮播（仅保留一条：开放平台邀请）
     const items = [
       {
-        text: '重磅声明：本站模组全部迁移至增强版专区，传承版不再更新！',
-        href: '#news',
-        label: '查看公告'
-      },
-      {
-        text: '警察模组已更名为 TACTFR（原 EF Police Mod）',
-        href: '#police-mod',
-        label: '查看详情'
-      },
-      {
-        text: '正在参加玩家动力跨年创作赛，点击下载助力冲榜',
-        href: 'thanks.html?src=announcement',
-        label: '前往活动页'
+        text: '我们诚邀各位对模组感兴趣的加入我们，详情请访问开放平台',
+        href: 'https://guixngyu88730882.github.io/GTA-Open-platform/',
+        label: '访问平台'
       }
     ];
+
 
 
     let idx = 0;
@@ -868,8 +861,10 @@
     setupNewsTimeLabels();
     setupReadingProgress();
     // setupMaterialRipple();
-    setupAnnouncementBar();    setupAnnouncementRotator();
+    setupAnnouncementBar();
+    setupAnnouncementRotator();
     setupGlobalSpotlight();
+
 
 
 
@@ -1036,8 +1031,10 @@
       });
     });
 
-    showFromHash(window.location.hash || '#home');    window.addEventListener('popstate', function () {
+    showFromHash(window.location.hash || '#home');
+    window.addEventListener('popstate', function () {
       showFromHash(window.location.hash || '#home');
+
     });
 
     window.addEventListener('hashchange', function () {
