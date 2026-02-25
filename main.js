@@ -794,9 +794,9 @@
         label: '查看详情'
       },
       {
-        text: '正在参加玩家动力跨年创作赛，点击下载助力冲榜',
-        href: 'thanks.html?src=announcement',
-        label: '前往活动页'
+        text: '模组有问题不会解决？加入100+人的大家庭吧 QQ群1079691553',
+        href: '#',
+        label: '一键复制'
       }
     ];
 

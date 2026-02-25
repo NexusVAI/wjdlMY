@@ -1,0 +1,63 @@
+/* ==========================
+   3D 卡片倾斜效果 (Tilt Effect)
+   ========================== */
+
+/* 给卡片添加 3D 透视容器 */
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease-out;
+  will-change: transform;
+}
+
+/* 卡片悬停时的光泽效果 */
+.tilt-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  border-radius: inherit;
+  z-index: 1;
+}
+
+.tilt-card:hover::before {
+  opacity: 1;
+}
+
+/* 暗色主题下的光泽调整 */
+[data-theme="dark"] .tilt-card::before {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.02) 50%,
+    transparent 100%
+  );
+}
+
+/* 卡片内容在 3D 空间中略微上浮 */
+.tilt-card .card-content {
+  transform: translateZ(20px);
+}
+
+/* 卡片上的图片在 3D 空间中更上浮 */
+.tilt-card img,
+.tilt-card .hero-cover {
+  transform: translateZ(30px);
+  transition: transform 0.3s ease;
+}
+
+/* 按钮在 3D 空间中最上浮 */
+.tilt-card .btn,
+.tilt-card button {
+  transform: translateZ(40px);
+}
