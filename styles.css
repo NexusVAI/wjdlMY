@@ -3849,15 +3849,7 @@ details.log-block.reveal.in-view {
   border-color: rgba(0, 122, 255, 0.26) !important;
 }
 
-.features li::before {
-  content: "✓";
-  position: absolute;
-  top: 24px;
-  right: 24px;
-  color: var(--blue);
-  font-weight: 700;
-  font-size: 18px;
-}
+/* 已移除 features li 的 ✓ 对勾样式 */
 
 /* 视频容器：现在里面只有按�?*/
 .video-wrapper {

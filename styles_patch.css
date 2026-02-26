@@ -1,0 +1,14 @@
+/* 补丁：移除 features li 的高光效果 */
+
+.features li::after,
+.features li::before {
+  display: none !important;
+  content: none !important;
+}
+
+/* 给 features li 添加 3D 倾斜效果支持 */
+.features li {
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease-out;
+  will-change: transform;
+}

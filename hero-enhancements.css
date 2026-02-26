@@ -1,0 +1,97 @@
+/* ==========================
+   Hero 区域动态效果增强
+   ========================== */
+
+/* Hero 背景渐变动画 */
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+/* 添加动态光晕效果 */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 30% 50%, rgba(0, 122, 255, 0.08) 0%, transparent 50%),
+              radial-gradient(circle at 70% 30%, rgba(90, 200, 250, 0.06) 0%, transparent 40%);
+  animation: heroGlow 15s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes heroGlow {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(5%, 3%) scale(1.05);
+  }
+  66% {
+    transform: translate(-3%, 5%) scale(1.02);
+  }
+}
+
+/* 暗色主题 */
+[data-theme="dark"] .hero::before {
+  background: radial-gradient(circle at 30% 50%, rgba(10, 132, 255, 0.15) 0%, transparent 50%),
+              radial-gradient(circle at 70% 30%, rgba(90, 200, 250, 0.1) 0%, transparent 40%);
+}
+
+/* Hero 内容层级 */
+.hero .hero-content,
+.hero .hero-content--split {
+  position: relative;
+  z-index: 1;
+}
+
+/* 页面标题装饰线动画 */
+.page > header h1 {
+  position: relative;
+  display: inline-block;
+}
+
+.page > header h1::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--blue, #007aff), rgba(0, 122, 255, 0.3));
+  border-radius: 2px;
+  animation: lineGrow 1s ease-out 0.5s both;
+}
+
+@keyframes lineGrow {
+  from {
+    width: 0;
+  }
+  to {
+    width: 80px;
+  }
+}
+
+/* 公告栏入场动画 */
+.announcement-bar {
+  animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* 导航栏入场 */
+.navbar {
+  animation: slideDown 0.6s ease-out;
+}

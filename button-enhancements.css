@@ -1,0 +1,126 @@
+/* ==========================
+   按钮悬停增强效果
+   ========================== */
+
+/* 导航链接悬停效果 */
+.nav-item {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-item::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--blue, #007aff);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-item:hover::after,
+.nav-item.active::after {
+  width: 60%;
+}
+
+/* 卡片悬停时的光晕增强 */
+.quickstart-card,
+.news-card,
+.download-card,
+.product-card,
+.features li {
+  transition: all 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.quickstart-card:hover,
+.news-card:hover,
+.download-card:hover,
+.product-card:hover,
+.features li:hover {
+  transform: translateY(-8px) !important;
+  box-shadow: 0 20px 50px rgba(0, 122, 255, 0.15);
+}
+
+/* 链接悬停颜色 */
+a {
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--blue, #007aff);
+}
+
+/* Section 标题悬停效果 */
+.section h2 {
+  position: relative;
+  display: inline-block;
+}
+
+.section h2::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--blue, #007aff), transparent);
+  border-radius: 2px;
+}
+
+/* Logo 悬停动画 */
+.nav-brand {
+  transition: transform 0.3s ease;
+}
+
+.nav-brand:hover {
+  transform: scale(1.05);
+}
+
+/* 标签悬停效果 */
+.chip {
+  transition: all 0.3s ease;
+}
+
+.chip:hover {
+  transform: scale(1.05);
+  background: var(--blue, #007aff);
+  color: white;
+}
+
+/* 下拉菜单动画增强 */
+.nav-dropdown-menu {
+  transform: translateY(10px);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Hero 区域入场动画 */
+.hero-main,
+.hero-aside {
+  animation: heroFadeIn 1s ease-out both;
+}
+
+.hero-aside {
+  animation-delay: 0.2s;
+}
+
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

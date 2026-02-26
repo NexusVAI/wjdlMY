@@ -40,3 +40,42 @@
   background: rgba(255, 255, 255, 0.95);
   box-shadow: 0 0 6px rgba(255, 255, 255, 0.6), 0 0 12px rgba(255, 255, 255, 0.3);
 }
+
+/* ==========================
+   流星效果
+   ========================== */
+.shooting-star {
+  position: absolute;
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.8), transparent);
+  border-radius: 50%;
+  opacity: 0;
+  transform: rotate(-45deg);
+}
+
+.shooting-star.animate {
+  animation: shoot 1.5s ease-out forwards;
+}
+
+@keyframes shoot {
+  0% {
+    opacity: 1;
+    transform: rotate(-45deg) translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(-45deg) translateX(500px);
+  }
+}
+
+/* 浅色主题下的流星颜色 */
+.shooting-star {
+  background: linear-gradient(90deg, var(--star-color, rgba(100, 150, 255, 0.8)), transparent);
+}
+
+/* 暗色主题下的流星 */
+[data-theme="dark"] .shooting-star {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.9), transparent);
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
+}

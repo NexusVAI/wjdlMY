@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#0a84ff" />
   <title>EF Mods | GTA5 模组</title>
-  <meta name="description" content="EF Mods 模组官方站：EF Police Mod、EF 宇宇修改器等，提供稳定优先的模块化玩法扩展、下载指引与说明。" />
+  <meta name="description" content="EF Mods 模组官方站：TACTFR、EF 宇宇修改器等，提供稳定优先的模块化玩法扩展、下载指引与说明。" />
   <meta property="og:title" content="EF Mods | GTA5 模组" />
   <meta property="og:description" content="EF Mods 模组官方站：稳定优先、模块化架构，提供下载指引、更新日志与使用说明。" />
   <meta property="og:type" content="website" />
@@ -13,6 +13,10 @@
   <link rel="stylesheet" href="styles.css?v=20260206" />
   <link rel="stylesheet" href="starfield.css?v=20260206" />
   <link rel="stylesheet" href="card-tilt.css?v=20260206" />
+  <link rel="stylesheet" href="styles_patch.css?v=20260206" />
+  <link rel="stylesheet" href="scroll-animations.css?v=20260206" />
+  <link rel="stylesheet" href="button-enhancements.css?v=20260206" />
+  <link rel="stylesheet" href="hero-enhancements.css?v=20260206" />
   
   <!-- 主题与基础样式 -->
 </head>
@@ -25,6 +29,11 @@
   <div class="reading-progress" aria-hidden="true">
     <div class="reading-progress-bar" id="reading-progress-bar"></div>
   </div>
+
+  <!-- 返回顶部按钮 -->
+  <button class="back-to-top" id="back-to-top" aria-label="返回顶部">
+    <span>↑</span>
+  </button>
 
   <!-- 固定导航栏 -->
   <nav class="navbar">
@@ -203,7 +212,7 @@
               <a class="btn primary btn-liquid" href="#police-mod">
                 <span class="liquid-refraction"></span>
                 <i class="fas fa-download"></i>
-                立即下载 Police Mod
+                立即下载 TACTFR
               </a>
               <a class="btn ghost btn-liquid" href="#yuyu-tool">
                 <span class="liquid-refraction"></span>
@@ -223,7 +232,7 @@
                   <div style="margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
                     <a class="btn ghost small btn-liquid" href="#police-mod">
                       <span class="liquid-refraction"></span>
-                      查看 Police Mod
+                      查看 TACTFR
                     </a>
                     <a class="btn ghost small btn-liquid" href="#news">
                       <span class="liquid-refraction"></span>
@@ -301,7 +310,7 @@
         <div class="product-grid">
           <div class="product-card">
             <div class="product-header">
-              <h3>EF Police Mod</h3>
+              <h3>TACTFR</h3>
               <p class="product-desc">沉浸式警察玩法扩展：执法流程一致性、嫌疑人行为逻辑、模块化架构。</p>
             </div>
             <div class="product-actions">
@@ -478,6 +487,48 @@
 
       <section class="section" id="news-feed" aria-label="EF Mods 新闻列表">
         <div class="news-list">
+          <article class="news-card" aria-label="我们完成了Consciousness的V3.0开发">
+            <div class="news-card-head">
+              <h2 class="news-title">我们完成了Consciousness的V3.0开发</h2>
+              <div class="news-meta" aria-label="发布时间">
+                <time class="news-time" datetime="2026-02-26T23:00:00" data-news-published="2026-02-26T23:00:00">2026-02-26 23:00</time>
+                <span class="news-badge" aria-label="重磅发布">HOT</span>
+              </div>
+            </div>
+
+            <div class="news-content">
+              <blockquote class="news-quote" style="border-left: 4px solid var(--accent); padding-left: 16px; margin: 16px 0; font-style: italic; color: var(--text-secondary);">
+                "我们离超级智能只有一步之遥。" —— Sam Altman, OpenAI 创始人
+              </blockquote>
+
+              <h3 class="news-h3">各位开发者/玩家大家好</h3>
+              <p>
+                我们在今天完成了 <strong>Consciousness V3.0</strong> 的开发！
+              </p>
+              <p>
+                这个模组会让游戏<strong>真正地生活起来</strong>。NPC 不再是机械地重复台词，而是拥有自己的记忆、性格和情感。
+              </p>
+              <p>
+                我们相信，未来的游戏世界应该是活的——每一个角色都有自己的故事，每一次互动都会产生真实的影响。
+              </p>
+              <p>
+                <strong>我们距离超级智能只有一步之遥。</strong>
+              </p>
+
+              <h3 class="news-h3">视频展示</h3>
+              <div class="video-wrapper" style="margin: 20px 0;">
+                <iframe src="https://player.bilibili.com/player.html?isOutside=true&bvid=BV1hbArzxEc7&p=1&high_quality=1&autoplay=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="width: 100%; max-width: 800px; height: 450px; border-radius: 12px;"></iframe>
+              </div>
+
+              <div class="download-actions" style="margin-top: 24px;">
+                <a class="btn primary btn-liquid" href="https://guixngyu88730882.github.io/consciousness/" target="_blank" rel="noopener noreferrer">
+                  <span class="liquid-refraction"></span>
+                  了解更多
+                </a>
+              </div>
+            </div>
+          </article>
+
           <article class="news-card" aria-label="迟到的TACTFR 5.3.99/5.3.100">
             <div class="news-card-head">
               <h2 class="news-title">迟到的TACTFR 5.3.99/5.3.100</h2>
@@ -728,13 +779,13 @@
               </ul>
 
               <p>
-                这次更新开发周期<strong>尤其长</strong>，主要原因是 Police Mod 的关键工作把时间“吃”得很厉害：底层链路、交互与稳定性都需要反复回归验证，
+                这次更新开发周期<strong>尤其长</strong>，主要原因是 TACTFR 的关键工作把时间“吃”得很厉害：底层链路、交互与稳定性都需要反复回归验证，
                 我们宁愿慢一点，也不希望用“堆功能换热度”的方式牺牲整体质量。
               </p>
 
-              <h3 class="news-h3">关于 Police Mod：v5.3.99 近期进展</h3>
+              <h3 class="news-h3">关于 TACTFR：v5.3.99 近期进展</h3>
               <p>
-                另外也提前预告：<strong>Police Mod v5.3.99</strong> 的主要更新内容，我们会在<strong>这几天内</strong>发布公告与说明（以最终测试为准）。
+                另外也提前预告：<strong>TACTFR v5.3.99</strong> 的主要更新内容，我们会在<strong>这几天内</strong>发布公告与说明（以最终测试为准）。
                 该版本会围绕“流程一致性、指令链路、现场反馈”继续补强，并会同步给出更清晰的更新要点与已知问题列表。
               </p>
 
@@ -797,7 +848,7 @@
 
             <div class="news-content">
               <p>
-                <strong>TACTFR v5.3.0</strong> 现已正式发布。
+                <strong>TACTFR v5.3.100</strong> 现已正式发布。
                 这一次，我们把“可玩性”与“可控性”放在同等优先级：功能更强，但依旧坚持稳定优先、流程一致、反馈明确。
               </p>
 
@@ -815,7 +866,7 @@
               </ul>
 
               <p>
-                版本详情与下载入口已同步更新至 <a href="#police-mod">EF Police Mod</a> 页面；如遇问题反馈，请附上版本号、复现步骤与相关日志。
+                版本详情与下载入口已同步更新至 <a href="#police-mod">TACTFR</a> 页面；如遇问题反馈，请附上版本号、复现步骤与相关日志。
               </p>
             </div>
           </article>
@@ -919,7 +970,7 @@
               </ul>
 
               <p>
-                在过去数日的开发周期中，团队并行推进多项任务：一方面持续优化 Police Mod 的核心机制，另一方面集中资源完成本次修改器的迭代升级。鉴于修改器在架构层面的相对简洁性，团队优先完成了本版本的开发与测试工作。
+                在过去数日的开发周期中，团队并行推进多项任务：一方面持续优化 TACTFR 的核心机制，另一方面集中资源完成本次修改器的迭代升级。鉴于修改器在架构层面的相对简洁性，团队优先完成了本版本的开发与测试工作。
               </p>
 
               <p>
@@ -972,7 +1023,7 @@
       </section>
     </section>
     
-    <!-- EF Police Mod 页面 -->
+    <!-- TACTFR 页面 -->
     <section id="police-mod" class="page">
       <!-- Hero / 顶部展示 -->
       <header class="hero">
@@ -996,7 +1047,7 @@
           </div>
 
           <aside class="hero-aside" aria-label="产品要点">
-            <div class="hero-cover hero-cover--police" aria-label="EF Police Mod 封面图"></div>
+            <div class="hero-cover hero-cover--police" aria-label="TACTFR 封面图"></div>
             <div class="hero-aside-title">一眼看懂</div>
             <div class="hero-chips" aria-label="核心卖点">
               <span class="chip">稳定优先</span>
@@ -1073,7 +1124,7 @@
       <section class="section" id="police-modules">
         <h2>玩法模块一览</h2>
 
-        <div class="quickstart-grid" aria-label="EF Police Mod 核心玩法模块">
+        <div class="quickstart-grid" aria-label="TACTFR 核心玩法模块">
           <div class="quickstart-card">
             <h3>警用终端</h3>
             <p>接警 / 任务选择 / 状态反馈集中管理，让流程更“像系统”。</p>
@@ -1111,7 +1162,7 @@
           </div>
           <div class="usp-card">
             <h3>建议排错方式</h3>
-            <p>先单独启用 Police Mod 验证正常，再逐个加入其它脚本，最快定位问题源。</p>
+            <p>先单独启用 TACTFR 验证正常，再逐个加入其它脚本，最快定位问题源。</p>
           </div>
         </div>
 
@@ -1131,7 +1182,7 @@
   <div class="video-embed-wrapper">
     <div class="video-embed-glass">
       <iframe 
-        src="https://player.bilibili.com/player.html?bvid=BV1UkccziEqd&page=1&high_quality=1&danmaku=0" 
+        src="https://player.bilibili.com/player.html?bvid=BV1UkccziEqd&page=1&high_quality=1&danmaku=0&autoplay=0" 
         scrolling="no" 
         border="0" 
         frameborder="no" 
@@ -1152,7 +1203,7 @@
           <li>推荐使用最新版本，直接覆盖安装</li>
           <li>将 <strong>DLL 文件</strong> 放入 <code>/scripts</code> 文件夹（若没有请新建）</li>
           <li>官网地址：<a href="https://www.wanjiadongli.com" target="_blank">https://www.wanjiadongli.com</a></li>
-          <li>模组下载地址：<a href="https://www.wanjiadongli.com/mods/292895" target="_blank">玩家动力 - EF Police Mod</a></li>
+          <li>模组下载地址：<a href="https://www.wanjiadongli.com/mods/292895" target="_blank">玩家动力 - TACTFR</a></li>
         </ul>
         <p class="warning">⚠ 本模组仅在 <strong>玩家动力网</strong> 发布原创版本，其余来源均为假冒。</p>
       </section>
@@ -1238,7 +1289,7 @@
             <details class="log-block" id="log-5.3.0">
               <summary class="log-header">
                 <span class="log-version">v5.3.0</span>
-                <span class="log-date">2026-02-08</span>
+                <span class="log-date">2026-02-08（旧版）</span>
                 <i class="fas fa-chevron-down log-icon"></i>
               </summary>
               <div class="log-content">
@@ -1412,7 +1463,7 @@
       <section class="section" id="download">
         <h2>下载</h2>
         <div class="download-card">
-          <h3>EF Police Mod v5.3.0</h3>
+          <h3>TACTFR v5.3.100</h3>
           <div class="download-buttons">
             <a class="btn primary btn-liquid" href="https://www.wanjiadongli.com/mods/292895" target="_blank" rel="noopener noreferrer">
               <span class="liquid-refraction"></span>
@@ -1615,7 +1666,7 @@
   <div class="video-embed-wrapper">
     <div class="video-embed-glass">
       <iframe 
-        src="https://player.bilibili.com/player.html?bvid=BV1dTFjzQEtQ&page=1&high_quality=1&danmaku=0" 
+        src="https://player.bilibili.com/player.html?bvid=BV1dTFjzQEtQ&page=1&high_quality=1&danmaku=0&autoplay=0" 
         scrolling="no" 
         border="0" 
         frameborder="no" 
@@ -2049,14 +2100,15 @@
   <script src="liquid-button.js?v=20260206" defer></script>
   <script src="log-animations.js?v=20260206" defer></script>
   <script>
-    // 星空背景效果
+    // 星空背景效果（带视差滚动 + 流星）
     (function() {
       const starfield = document.getElementById('starfield');
       if (!starfield) return;
 
-      const starCount = 150; // 星星数量
+      const starCount = 150;
+      const stars = [];
       
-      // 浅色主题下的星星颜色（深蓝、紫色、青色等）
+      // 浅色主题下的星星颜色
       const lightThemeColors = [
         { color: 'rgba(80, 120, 200, 0.7)', glow: 'rgba(80, 120, 200, 0.4)' },
         { color: 'rgba(100, 80, 180, 0.6)', glow: 'rgba(100, 80, 180, 0.3)' },
@@ -2072,21 +2124,22 @@
         star.className = 'star';
         
         // 随机位置
-        star.style.left = Math.random() * 100 + '%';
-        star.style.top = Math.random() * 100 + '%';
+        const left = Math.random() * 100;
+        const top = Math.random() * 100;
+        star.style.left = left + '%';
+        star.style.top = top + '%';
         
-        // 随机大小 (1px - 3px)
+        // 随机大小
         const size = Math.random() * 2 + 1;
         star.style.width = size + 'px';
         star.style.height = size + 'px';
         
-        // 随机动画时长 (2s - 5s)
+        // 随机视差速度（离页面滚动速度不同）
+        const parallaxSpeed = Math.random() * 0.3 + 0.1;
+        
+        // 随机动画时长
         star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
-        
-        // 随机透明度
         star.style.setProperty('--opacity', Math.random() * 0.4 + 0.3);
-        
-        // 随机动画延迟
         star.style.animationDelay = Math.random() * 5 + 's';
         
         // 根据主题设置颜色
@@ -2096,16 +2149,107 @@
           star.style.setProperty('--star-glow', colorSet.glow);
         }
         
+        // 保存星星数据用于视差
+        stars.push({ element: star, top: top, speed: parallaxSpeed });
+        
         starfield.appendChild(star);
       }
+
+      // 视差滚动效果
+      let lastScrollY = window.scrollY;
+      function updateParallax() {
+        const scrollY = window.scrollY;
+        const delta = scrollY - lastScrollY;
+        
+        stars.forEach(star => {
+          let newTop = star.top - (scrollY * star.speed * 0.05);
+          if (newTop > 100) newTop -= 100;
+          if (newTop < 0) newTop += 100;
+          star.element.style.top = newTop + '%';
+        });
+        
+        lastScrollY = scrollY;
+        requestAnimationFrame(updateParallax);
+      }
+      requestAnimationFrame(updateParallax);
+
+      // 流星效果（随机出现）
+      function createShootingStar() {
+        const shootingStar = document.createElement('div');
+        shootingStar.className = 'shooting-star';
+        
+        // 随机起始位置
+        const startX = Math.random() * 60 + 20;
+        const startY = Math.random() * 40;
+        shootingStar.style.left = startX + '%';
+        shootingStar.style.top = startY + '%';
+        
+        // 根据主题设置颜色
+        if (!isDarkTheme) {
+          const colorSet = lightThemeColors[Math.floor(Math.random() * lightThemeColors.length)];
+          shootingStar.style.background = `linear-gradient(90deg, ${colorSet.color}, transparent)`;
+        }
+        
+        starfield.appendChild(shootingStar);
+        
+        // 触发动画
+        setTimeout(() => {
+          shootingStar.classList.add('animate');
+        }, 50);
+        
+        // 动画结束后移除
+        setTimeout(() => {
+          shootingStar.remove();
+        }, 1600);
+        
+        // 随机 5-15 秒后再次出现
+        const nextTime = Math.random() * 10000 + 5000;
+        setTimeout(createShootingStar, nextTime);
+      }
+      
+      // 页面加载后延迟开始流星
+      setTimeout(createShootingStar, 3000);
     })();
 
-    // 3D 卡片倾斜效果
+    // 3D 卡片倾斜效果（带平滑阻尼，支持动态加载的卡片）
     (function() {
-      const cards = document.querySelectorAll('.quickstart-card, .news-card, .download-card, .hero-aside');
+      const selector = '.quickstart-card, .news-card, .download-card, .hero-aside, .features li';
+      const processedCards = new WeakSet();
       
-      cards.forEach(card => {
+      function initCard(card) {
+        if (processedCards.has(card)) return;
+        processedCards.add(card);
+        
         card.classList.add('tilt-card');
+        
+        let targetRotateX = 0;
+        let targetRotateY = 0;
+        let currentRotateX = 0;
+        let currentRotateY = 0;
+        let animationId = null;
+        
+        const ease = 0.08;
+        const maxAngle = 6;
+        
+        function animate() {
+          currentRotateX += (targetRotateX - currentRotateX) * ease;
+          currentRotateY += (targetRotateY - currentRotateY) * ease;
+          
+          if (Math.abs(targetRotateX - currentRotateX) < 0.01 && 
+              Math.abs(targetRotateY - currentRotateY) < 0.01) {
+            currentRotateX = targetRotateX;
+            currentRotateY = targetRotateY;
+          }
+          
+          card.style.transform = `perspective(1000px) rotateX(${currentRotateX}deg) rotateY(${currentRotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+          
+          if (Math.abs(targetRotateX - currentRotateX) > 0.01 || 
+              Math.abs(targetRotateY - currentRotateY) > 0.01) {
+            animationId = requestAnimationFrame(animate);
+          } else {
+            animationId = null;
+          }
+        }
         
         card.addEventListener('mousemove', (e) => {
           const rect = card.getBoundingClientRect();
@@ -2115,19 +2259,87 @@
           const centerX = rect.width / 2;
           const centerY = rect.height / 2;
           
-          // 计算倾斜角度（最大 10 度）
-          const rotateX = ((y - centerY) / centerY) * -10;
-          const rotateY = ((x - centerX) / centerX) * 10;
+          targetRotateX = ((y - centerY) / centerY) * -maxAngle;
+          targetRotateY = ((x - centerX) / centerX) * maxAngle;
           
-          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+          if (!animationId) {
+            animate();
+          }
         });
         
         card.addEventListener('mouseleave', () => {
-          card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+          targetRotateX = 0;
+          targetRotateY = 0;
+          
+          if (!animationId) {
+            animate();
+          }
         });
-        
-        card.addEventListener('mouseenter', () => {
-          card.style.transition = 'transform 0.1s ease-out';
+      }
+      
+      // 初始化已存在的卡片
+      document.querySelectorAll(selector).forEach(initCard);
+      
+      // 监听新卡片的添加（支持动态加载）
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          mutation.addedNodes.forEach((node) => {
+            if (node.nodeType === 1) {
+              if (node.matches(selector)) {
+                initCard(node);
+              }
+              node.querySelectorAll(selector).forEach(initCard);
+            }
+          });
+        });
+      });
+      
+      observer.observe(document.body, { childList: true, subtree: true });
+    })();
+
+    // 滚动淡入动画
+    (function() {
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -50px 0px',
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+          }
+        });
+      }, observerOptions);
+
+      // 需要淡入的元素
+      const fadeElements = document.querySelectorAll(
+        '.section, .quickstart-card, .news-card, .download-card, .product-card, .features li, .hero-aside, .hero-main, .hero-cover'
+      );
+      
+      fadeElements.forEach(el => {
+        el.classList.add('fade-in-section');
+        observer.observe(el);
+      });
+    })();
+
+    // 返回顶部按钮
+    (function() {
+      const backToTopBtn = document.getElementById('back-to-top');
+      
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          backToTopBtn.classList.add('visible');
+        } else {
+          backToTopBtn.classList.remove('visible');
+        }
+      });
+      
+      backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
         });
       });
     })();
